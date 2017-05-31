@@ -1,22 +1,22 @@
 # Virtual Library
-Example of a web application that consumes and display the google books api.
+Example of a web application that uses the google books api to search for books and display the results.
 
 # Installation
-Download and install - https://nodejs.org .
-Download or clone this git repository.
-Open terminal / git bash.
-Run cd "<directory>". 
-Run npm install.
-Run npm start to start server. 
-Go to http://localhost:8080 to verify that it worked.
+Download and install nodejs - https://nodejs.org .\n
+Download or clone this git repository.\n
+Open terminal / git bash.\n
+Run cd "<directory>". \n
+Run npm install.\n
+Run npm start to start server.\n
+Go to http://localhost:8080 to verify that it worked.\n
 
 # Unit Tests
-terminal / git bash. 
-Run npm install -g protractor.
-Run webdriver-manager update
-Run webdriver-manager start
-Run cd '<directory-name>/unit tests'.
-Run protractor conf.js
+terminal / git bash. \n
+Run npm install -g protractor.\n
+Run webdriver-manager update. \n
+Run webdriver-manager start.\n
+Run cd '<directory-name>/unit tests'.\n
+Run protractor conf.js.\n
 
 # About
 This application is a virtual library that consumes the google books api and displays the response in a legible way to the user.
