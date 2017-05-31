@@ -1,0 +1,79 @@
+<nav class="navbar navbar-default navbar-fixed-top">
+	<div class="container-fluid">
+		<div class="navbar-header">
+			<ul class="nav navbar-nav pull-left">
+				<li class="dropdown">
+					<a data-toggle="dropdown" href=""><span class="glyphicon glyphicon-star"></span></a>
+					<ul class="dropdown-menu">
+						<li ng-repeat="item in favorites">
+							<div  class="favorites-menu" align="center">
+								<a ng-click="bookInfo(item.id)" href="">{{item.name}}</a>
+							</div>
+							<div  class="favorites-menu">
+								<a disable-auto-close ng-click="removeFavoriteMenu(item)" href=""><span class="glyphicon glyphicon-remove"></span></a>
+							</div>
+						</li>
+					</ul>
+				</li>
+			</ul>
+			<ul class="nav navbar-nav pull-left">
+				<li class="dropdown">
+					<a href="" ng-click="reload()"><span class="glyphicon glyphicon-home"></span></a>
+				</li>
+			</ul>
+		</div>
+	</div>
+</nav>
+<div class="main-frame">
+	<div class="result-frame" align="center">
+		<h2> {{results.volumeInfo.title}} </h2>
+	</div>
+</div>
+<div class="results-container main-frame">
+	<div align="center">
+		<div ng-show="results.volumeInfo.title != 'Book Not Found'">
+			<div class="result-frame">
+				<span class="info">
+					<div align="left">
+						<label>Description:&nbsp;&nbsp;</label>
+						<label>{{results.volumeInfo.description}}</label>
+					</div>
+					<div align="left">
+						<label>Authors:&nbsp;&nbsp;</label>
+						<label ng-repeat="author in results.volumeInfo.authors">{{author}}</label>
+					</div>
+					<div align="left">
+						<label>Published: &nbsp;&nbsp;</label>
+						<label>{{results.volumeInfo.publisher}} - {{results.volumeInfo.publishedDate}}</label>
+					</div>
+					<div align="left">
+						<label>Categories:&nbsp;&nbsp;</label>
+						<label ng-repeat="category in results.volumeInfo.categories">{{category}}</label>
+					</div>
+					<div align="left">
+						<label>Pages:&nbsp;&nbsp;</label>
+						<label>{{results.volumeInfo.pageCount}}</label>
+					</div>
+					<div align="left">
+						<label>Maturity Rating:&nbsp;&nbsp;</label>
+						<label>{{results.volumeInfo.maturityRating}}</label>
+					</div>
+					<div align="left">
+						<label>Canonical Volume:&nbsp;&nbsp;</label>
+						<a ng-href="{{results.volumeInfo.canonicalVolumeLink}}">{{results.volumeInfo.title}}</a>
+					</div>
+					<div align="left">
+						<label>Sale Info:&nbsp;&nbsp;</label>
+						<label>{{results.saleInfo.saleability}}</label>
+					</div></span>
+			</div>
+		</div>
+		<div class="result-frame">
+			<div>
+				<button id="back" ng-click="back()">
+					Back
+				</button>
+			</div>
+		</div>
+	</div>
+</div>

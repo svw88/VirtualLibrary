@@ -1,0 +1,132 @@
+<nav class="navbar navbar-default navbar-fixed-top">
+	<div class="navbar-header">
+		<ul class="nav navbar-nav pull-left">
+			<li class="dropdown">
+				<a data-toggle="dropdown" href=""><span class="glyphicon glyphicon-star"></span></a>
+				<ul class="dropdown-menu">
+					<li ng-repeat="item in favorites">
+						<div class="favorites-menu">
+							<a ng-click="bookInfo(item.id)" href="">{{item.name}}</a>
+						</div>
+						<div class="favorites-menu">
+							<a disable-auto-close ng-click="removeFavoriteMenu(item)" href=""><span class="glyphicon glyphicon-remove"></span></a>
+						</div>
+					</li>
+				</ul>
+			</li>
+		</ul>
+		<ul class="nav navbar-nav pull-left">
+			<li class="dropdown">
+				<a href="" ng-click="reload()"><span class="glyphicon glyphicon-home"></span></a>
+			</li>
+		</ul>
+		<div ng-show="results != undefined" class="search-container">
+			<select ng-model="searchType">
+				<option>Author</option>
+				<option>Book</option>
+			</select>
+			<input id="searchInputTop" type="text" ng-model="name"/>
+			<button id="searchButtonTop" ng-click="goToSearch()">
+				Search
+			</button>
+		</div>
+	</div>
+</nav>
+<div class="main-frame">
+	<div align="center">
+		<label ng-show="results != undefined">Results For : {{title}}</label>
+		<label ng-hide="results != undefined">Welcome To The ShipIt Library</label>
+	</div>
+</div>
+<div class="results-container main-frame" align="center">
+	<div class="welcome-container" ng-hide="results != undefined">
+		<p>
+			The ShipIt library is a virtual library that uses the google books api to enable you to find any book and all its information in just a few clicks
+		</p>
+		<div class="search-container">
+			<select ng-model="searchType">
+				<option>Book</option>
+				<option>Author</option>
+			</select>
+			<input id="searchInput" type="text" ng-model="name"/>
+			<button id="searchButton" ng-click="goToSearch()">
+				Search
+			</button>
+		</div>
+	</div>
+	<div ng-show="results != undefined">
+		<div class="result-frame"  ng-repeat="item in results.items">
+			<img ng-src="{{item.volumeInfo.imageLinks.thumbnail}}" alt="No Image Available"/>
+			<span class="title"> <h2 ng-bind-html="searchType == 'Book' ? highlightBook(item.volumeInfo.title,title) : highlightBook(item.volumeInfo.title)"></h2>
+				<div>
+					<label>Authors:</label>
+					<label ng-repeat="author in item.volumeInfo.authors" ng-bind-html="searchType == 'Author' ? highlightAuthor(author,title) : highlightAuthor(author)"></label>
+				</div>
+				<div>
+					<label>Published:</label>
+					<label>{{item.volumeInfo.publisher}} - {{item.volumeInfo.publishedDate}}</label>
+				</div> </span>
+			<span class="category">
+				<div>
+					<label>{{item.volumeInfo.categories[0]}}</label>
+					<a id="addFav" ng-hide="isFavorites(item) == true" ng-click="addFavorite(item)" href="" ><span class="glyphicon glyphicon-star-empty"></span></a>
+					<a id="removeFav" ng-show="isFavorites(item) == true" ng-click="removeFavorite(item)" href=""><span class="glyphicon glyphicon-star"></span></a>
+					<button id="info" ng-click="bookInfo(item.id)">
+						More Info
+					</button
+				</div></span>
+		</div>
+	</div>
+	<div class="event-frame" ng-show="results != undefined">
+		<ul ng-show="index > 1" class="pager">
+			<li class="previous">
+				<a id="previous" ng-click="paginate(index-1)" href="">Previous</a>
+			</li>
+			<ul class="pagination">
+				<li ng-show="index > 2">
+					<a ng-click="paginate(index-2)" href="">{{index - 2}}</a>
+				</li>
+				<li>
+					<a ng-click="paginate(index-1)" href="">{{index - 1}}</a>
+				</li>
+				<li class="active">
+					<a ng-click="paginate(index)" href="">{{index}}</a>
+				</li>
+				<li>
+					<a ng-click="paginate(index+1)" href="">{{index + 1}}</a>
+				</li>
+				<li>
+					<a ng-click="paginate(index+2)" href="">{{index + 2}}</a>
+				</li>
+				<li ng-hide="index > 2">
+					<a ng-click="paginate(index+3)" href="">{{index + 3}}</a>
+				</li>
+			</ul>
+			<li class="next">
+				<a ng-click="paginate(index+1)" href="">Next</a>
+			</li>
+		</ul>
+		<ul ng-hide="index > 1" class="pager pager-small">
+			<ul class="pagination">
+				<li class="active" >
+					<a ng-click="paginate(index)"href="">{{index}}</a>
+				</li>
+				<li>
+					<a ng-click="paginate(index+1)" href="">{{index + 1}}</a>
+				</li>
+				<li>
+					<a ng-click="paginate(index+2)" href="">{{index + 2}}</a>
+				</li>
+				<li>
+					<a ng-click="paginate(index+3)" href="">{{index + 3}}</a>
+				</li>
+				<li>
+					<a ng-click="paginate(index+4)" href="">{{index + 4}}</a>
+				</li>
+			</ul>
+			<li class="next">
+				<a id="next" ng-click="paginate(index+1)" href="">Next</a>
+			</li>
+		</ul>
+	</div>
+</div>
