@@ -22,6 +22,7 @@ protractor conf.js.
 This application is a virtual library that consumes the google books api and displays the response in a legible way to the user.
 To accomplish this task I have used nodejs as a server and angularjs for the UI with protractor for unit testing.
 A hosted example can be found at http://morning-springs-15122.herokuapp.com.
+A Minified Bundle version can be found at https://github.com/svw88/Virtual-Library-Distribution
 
 
 
