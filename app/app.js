@@ -269,8 +269,8 @@ function($scope, $routeParams, $location, ShipItService, $window, $route, $filte
 }]);
 
 // Specific book info page controller
-app.controller("BookController", ["$scope", "$routeParams", "$location", "ShipItService", "$window", "$route", "$filter",
-function($scope, $routeParams, $location, ShipItService, $window, $route, $filter) {
+app.controller("BookController", ["$scope", "$routeParams", "$location", "ShipItService", "$window", "$route", "$filter","$sce",
+function($scope, $routeParams, $location, ShipItService, $window, $route, $filter, $sce) {
 	$scope.searchType = "Book";
 
 	// method to retrieve info for specific book by volumeid
@@ -293,6 +293,11 @@ function($scope, $routeParams, $location, ShipItService, $window, $route, $filte
 			$scope.favorites = response.data;
 		};
 	});
+	
+	$scope.fixDescription = function(text) {		
+			return $sce.trustAsHtml(text);
+
+	};
 	
 	/* method to remove favorite from favorites array in the 
 	  favorites dropdown menu and save it to favorites.json */

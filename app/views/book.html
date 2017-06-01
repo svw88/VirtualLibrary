@@ -36,7 +36,7 @@
 				<span class="info">
 					<div align="left">
 						<label>Description:&nbsp;&nbsp;</label>
-						<label>{{results.volumeInfo.description}}</label>
+						<label ng-bind-html="fixDescription(results.volumeInfo.description)"></label>
 					</div>
 					<div align="left">
 						<label>Authors:&nbsp;&nbsp;</label>
