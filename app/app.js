@@ -166,14 +166,14 @@ function($scope, $routeParams, $location, ShipItService, $window, $route, $filte
 		$scope.id = (index * 4) - 4;
 		if ($scope.searchType == "Book") {
 			ShipItService.searchByBook({
-				name : $scope.nameHolder,
+				name : $scope.title,
 				id : $scope.id
 			}).then(function(results) {
 				$scope.results = results;
 			});
 		} else {
 			ShipItService.searchByAuthor({
-				name : $scope.nameHolder,
+				name : $scope.title,
 				id : $scope.id
 			}).then(function(results) {
 				$scope.results = results;
